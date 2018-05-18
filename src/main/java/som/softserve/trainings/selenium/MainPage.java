@@ -1,43 +1,57 @@
 package som.softserve.trainings.selenium;
 
-import com.codeborne.selenide.Selenide;
-import org.openqa.selenium.By;
+import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.page;
 
 public class MainPage {
-    private static final String BASE_URL = "https://courses.ultimateqa.com";
 
-    public MainPage open() {
-        Selenide.open(BASE_URL);
-        return this;
-    }
+    @FindBy(how = How.ID, using = "notifications")
+    private SelenideElement notifications;
+
+    @FindBy(how = How.LINK_TEXT, using = "Sign In")
+    private SelenideElement signIn;
+
+    @FindBy(how = How.ID, using = "my_account")
+    private SelenideElement myAccount;
+
+    @FindBy(how = How.LINK_TEXT, using = "Create a new account")
+    private SelenideElement createANewAccount;
+
+    @FindBy(how = How.LINK_TEXT, using = "Sign Out")
+    private SelenideElement signOut;
+
+    @FindBy(how = How.LINK_TEXT, using = "Enroll for free")
+    private SelenideElement enrollForFree;
 
     public LoginPage openLogin() {
-        $("#notifications").shouldNotBe(visible);
-        $(By.linkText("Sign In")).click();
-        return new LoginPage();
+        notifications.shouldNotBe(visible);
+        signIn.click();
+        return page(LoginPage.class);
     }
 
     public RegistrationPage openRegistration() {
-        $("#notifications").shouldNotBe(visible);
-        $(By.linkText("Sign In")).click();
-        $(By.linkText("Create a new account")).click();
-        return new RegistrationPage();
+        notifications.shouldNotBe(visible);
+        signIn.click();
+        createANewAccount.click();
+        return page(RegistrationPage.class);
     }
 
     public MainPage logOut() {
-        $("#notifications").shouldNotBe(visible);
-        $("#my_account").click();
-        $(By.linkText("Sign Out")).click();
+        notifications.shouldNotBe(visible);
+        myAccount.click();
+        signOut.click();
         return this;
     }
 
     public CoursePage enrol(String courseName) {
         $(byText(courseName)).click();
-        $(By.linkText("Enroll for free")).click();
-        return new CoursePage();
+        enrollForFree.click();
+        return page(CoursePage.class);
     }
 }

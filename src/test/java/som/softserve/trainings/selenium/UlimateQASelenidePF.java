@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.open;
 
-public class UlimateQASelenidePO {
+public class UlimateQASelenidePF {
     private static final String BASE_URL = "https://courses.ultimateqa.com";
 
     @Test
