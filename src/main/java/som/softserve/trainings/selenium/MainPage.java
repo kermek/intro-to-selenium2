@@ -1,31 +1,25 @@
 package som.softserve.trainings.selenium;
 
-import com.codeborne.selenide.Selenide;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.page;
 
 public class MainPage {
-    private static final String BASE_URL = "https://courses.ultimateqa.com";
-
-    public MainPage open() {
-        Selenide.open(BASE_URL);
-        return this;
-    }
 
     public LoginPage openLogin() {
         $("#notifications").shouldNotBe(visible);
         $(By.linkText("Sign In")).click();
-        return new LoginPage();
+        return page(LoginPage.class);
     }
 
     public RegistrationPage openRegistration() {
         $("#notifications").shouldNotBe(visible);
         $(By.linkText("Sign In")).click();
         $(By.linkText("Create a new account")).click();
-        return new RegistrationPage();
+        return page(RegistrationPage.class);
     }
 
     public MainPage logOut() {
@@ -38,6 +32,6 @@ public class MainPage {
     public CoursePage enrol(String courseName) {
         $(byText(courseName)).click();
         $(By.linkText("Enroll for free")).click();
-        return new CoursePage();
+        return page(CoursePage.class);
     }
 }

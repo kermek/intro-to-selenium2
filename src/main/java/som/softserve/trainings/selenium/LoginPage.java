@@ -1,6 +1,7 @@
 package som.softserve.trainings.selenium;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.page;
 
 public class LoginPage {
 
@@ -8,6 +9,6 @@ public class LoginPage {
         $("#user_email").setValue(email);
         $("#user_password").setValue(password);
         $("#btn-signin").click();
-        return new MainPage();
+        return page(MainPage.class);
     }
 }
