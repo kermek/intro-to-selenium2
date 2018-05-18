@@ -38,7 +38,8 @@ public class Practice {
         driver.findElement(By.name("submit_search")).click();
         driver.findElement(By.linkText("Faded Short Sleeve T-shirts")).click();
         driver.findElement(By.name("Submit")).click();
-        (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated((By.className("icon-ok"))));
+        (new WebDriverWait(driver, 10))
+                .until(ExpectedConditions.presenceOfElementLocated((By.className("icon-ok"))));
         driver.findElement(By.linkText("Proceed to checkout")).click();
 
         Assert.assertTrue(driver.findElement(By.cssSelector("td.cart_description"))

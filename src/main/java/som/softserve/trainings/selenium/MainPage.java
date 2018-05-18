@@ -21,6 +21,13 @@ public class MainPage {
         return new LoginPage();
     }
 
+    public RegistrationPage openRegistration() {
+        $("#notifications").shouldNotBe(visible);
+        $(By.linkText("Sign In")).click();
+        $(By.linkText("Create a new account")).click();
+        return new RegistrationPage();
+    }
+
     public MainPage logOut() {
         $("#notifications").shouldNotBe(visible);
         $("#my_account").click();

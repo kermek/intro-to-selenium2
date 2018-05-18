@@ -10,8 +10,8 @@ public class UlimateQASelenidePO {
         String email = System.currentTimeMillis() + "@mail123.com";
 
         MainPage mainPage = new MainPage();
-        CoursePage coursePage = mainPage.openLogin()
-                .signUn("Homer", "Simpson", email, "P@ssw0rd")
+        CoursePage coursePage = mainPage.openRegistration()
+                .signUp("Homer", "Simpson", email, "P@ssw0rd")
                 .logOut()
                 .openLogin()
                 .signIn(email, "P@ssw0rd")
